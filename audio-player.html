@@ -21,19 +21,25 @@
         this.audioSource = this.audioContext.createBufferSource();
         this.audioSource.connect(this.audioContext.destination);
         if (this.src) {
-          var base64shebang = 'data:audio/mp3;base64,';
-          if (this.src.indexOf(base64shebang) == 0) {
-            var audioData = this.src.slice(base64shebang.length);
-            this.play64(audioData);
-          } else {
-            var audioRequest = new XMLHttpRequest();
-            audioRequest.open("GET", this.src, true);
-            audioRequest.responseType = "arraybuffer";
-            audioRequest.onload = function() {
-              this.play(audioRequest.response);
-            }.bind(this);
-            audioRequest.send();
-          }
+          this.loadAudioSrc();
+        }
+      },
+      srcChanged: function(oldVal, newVal) {
+        this.loadAudioSrc();
+      },
+      loadAudioSrc: function() {
+        var base64shebang = 'data:audio/mp3;base64,';
+        if (this.src.indexOf(base64shebang) == 0) {
+          var audioData = this.src.slice(base64shebang.length);
+          this.play64(audioData);
+        } else {
+          var audioRequest = new XMLHttpRequest();
+          audioRequest.open("GET", this.src, true);
+          audioRequest.responseType = "arraybuffer";
+          audioRequest.onload = function() {
+            this.play(audioRequest.response);
+          }.bind(this);
+          audioRequest.send();
         }
       },
       play: function(audioData) {
