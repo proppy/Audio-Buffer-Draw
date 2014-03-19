@@ -2,7 +2,7 @@
 <script src="js/drawbuffer.js"></script>
 <script src="js/base64array.js"></script>
 
-<polymer-element name="audio-player">
+<polymer-element name="audio-player" attributes="src autoplay">
   <template>
     <canvas id="sound-buffer-view" width="750" height="200"></canvas>
   </template>
@@ -10,22 +10,37 @@
     Polymer('audio-player', {
       ready: function() {
         AudioContext = webkitAudioContext;
-        this.context = new AudioContext();
-        this.source = this.context.createBufferSource();
-        this.source.connect(this.context.destination);
+        this.audioContext = new AudioContext();
+        this.audioSource = this.audioContext.createBufferSource();
+        this.audioSource.connect(this.audioContext.destination);
+        if (this.src) {
+          var base64shebang = 'data:audio/mp3;base64,';
+          if (this.src.indexOf(base64shebang) == 0) {
+            var audioData = this.src.slice(base64shebang.length);
+            this.play64(audioData);
+          } else {
+            var audioRequest = new XMLHttpRequest();
+            audioRequest.open("GET", this.src, true);
+            audioRequest.responseType = "arraybuffer";
+            audioRequest.onload = function() {
+              this.play(audioRequest.response);
+            }.bind(this);
+            audioRequest.send();
+          }
+        }
       },
       play: function(audioData) {
-        this.context.decodeAudioData(audioData.buffer, function(buffer) {
-          this.source.buffer = buffer;
-          this.source.start(0);
+        this.audioContext.decodeAudioData(audioData, function(buffer) {
+          this.audioSource.buffer = buffer;
+          this.audioSource.start(0);
           this.drawBuffer(buffer);
         }.bind(this));
       },
       play64: function(base64AudioData) {
-        this.play(base64DecToArr(base64AudioData));
+        this.play(base64DecToArr(base64AudioData).buffer);
       },
       stop: function() {
-        this.source.stop(0);
+        this.audioSource.stop(0);
       },
       drawBuffer: function(buffer) {
         var canvas = this.$['sound-buffer-view'];
