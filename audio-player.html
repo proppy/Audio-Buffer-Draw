@@ -2,12 +2,19 @@
 <script src="js/drawbuffer.js"></script>
 <script src="js/base64array.js"></script>
 
-<polymer-element name="audio-player" attributes="src autoplay">
+<polymer-element name="audio-player" attributes="src autoplay width height">
   <template>
-    <canvas id="sound-buffer-view" width="750" height="200"></canvas>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <canvas id="sound-buffer-view" width="{{ width }}" height="{{ height }}"></canvas>
   </template>
   <script>
     Polymer('audio-player', {
+      width: 200,
+      height: 50,
       ready: function() {
         AudioContext = webkitAudioContext;
         this.audioContext = new AudioContext();
