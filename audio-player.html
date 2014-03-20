@@ -28,10 +28,10 @@
       height: 50,
       color: 'grey',
       ready: function() {
-        AudioContext = webkitAudioContext;
-        this.audioContext = new AudioContext();
-        this.audioSource = this.audioContext.createBufferSource();
-        this.audioSource.connect(this.audioContext.destination);
+        AudioContext = AudioContext || webkitAudioContext;
+        window.audioContext = window.audioContext || new AudioContext();
+        this.audioSource = window.audioContext.createBufferSource();
+        this.audioSource.connect(window.audioContext.destination);
         this.canvas = this.$['sound-buffer-view'];
       },
       srcChanged: function(oldVal, newVal) {
@@ -53,7 +53,7 @@
         }
       },
       play: function(audioData) {
-        this.audioContext.decodeAudioData(audioData, function(buffer) {
+        window.audioContext.decodeAudioData(audioData, function(buffer) {
           this.audioSource.buffer = buffer;
           this.audioSource.start(0);
           this.drawBuffer(buffer);
