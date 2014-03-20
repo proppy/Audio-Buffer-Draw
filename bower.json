@@ -1,7 +1,7 @@
 {
-  "name": "polymer-audio-player",
+  "name": "webaudio-buffer-draw",
   "version": "0.0.1",
-  "main": "audio-player.html",
+  "main": "webaudio-buffer-draw.html",
   "ignore": [
     ".gitignore"
   ],
