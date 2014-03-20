@@ -1,0 +1,21 @@
+{
+  "name": "webaudio-buffer-draw",
+  "main": "webaudio-buffer-draw.html",
+  "ignore": [
+    ".gitignore"
+  ],
+  "dependencies": {
+    "polymer": "~0.2.1"
+  },
+  "homepage": "https://github.com/proppy/webaudio-buffer-draw",
+  "_release": "98fabe199b",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "98fabe199b3d645a54ad4abceb40531f9afe46df"
+  },
+  "_source": "git://github.com/proppy/webaudio-buffer-draw.git",
+  "_target": "*",
+  "_originalSource": "proppy/webaudio-buffer-draw",
+  "_direct": true
+}

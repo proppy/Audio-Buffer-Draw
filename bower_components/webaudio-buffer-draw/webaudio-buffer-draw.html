@@ -1,8 +1,8 @@
-<link rel="import" href="/polymer-audio-player/bower_components/polymer/polymer.html">
+<link rel="import" href="/webaudio-buffer-draw/bower_components/polymer/polymer.html">
 <script src="js/drawbuffer.js"></script>
 <script src="js/base64array.js"></script>
 
-<polymer-element name="audio-player" attributes="src width height">
+<polymer-element name="webaudio-buffer-draw" attributes="src width height">
   <template>
     <style>
       :host {
@@ -23,15 +23,15 @@
     <canvas id="sound-buffer-view" width="{{ width }}" height="{{ height }}"></canvas>
   </template>
   <script>
-    Polymer('audio-player', {
+    Polymer('webaudio-buffer-draw', {
       width: 200,
       height: 50,
       color: 'grey',
       ready: function() {
-        AudioContext = webkitAudioContext;
-        this.audioContext = new AudioContext();
-        this.audioSource = this.audioContext.createBufferSource();
-        this.audioSource.connect(this.audioContext.destination);
+        AudioContext = AudioContext || webkitAudioContext;
+        window.audioContext = window.audioContext || new AudioContext();
+        this.audioSource = window.audioContext.createBufferSource();
+        this.audioSource.connect(window.audioContext.destination);
         this.canvas = this.$['sound-buffer-view'];
       },
       srcChanged: function(oldVal, newVal) {
@@ -53,7 +53,7 @@
         }
       },
       play: function(audioData) {
-        this.audioContext.decodeAudioData(audioData, function(buffer) {
+        window.audioContext.decodeAudioData(audioData, function(buffer) {
           this.audioSource.buffer = buffer;
           this.audioSource.start(0);
           this.drawBuffer(buffer);
