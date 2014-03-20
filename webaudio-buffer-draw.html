@@ -2,7 +2,7 @@
 <script src="js/drawbuffer.js"></script>
 <script src="js/base64array.js"></script>
 
-<polymer-element name="audio-player" attributes="src width height">
+<polymer-element name="webaudio-buffer-draw" attributes="src width height">
   <template>
     <style>
       :host {
@@ -23,7 +23,7 @@
     <canvas id="sound-buffer-view" width="{{ width }}" height="{{ height }}"></canvas>
   </template>
   <script>
-    Polymer('audio-player', {
+    Polymer('webaudio-buffer-draw', {
       width: 200,
       height: 50,
       color: 'grey',
