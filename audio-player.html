@@ -2,7 +2,7 @@
 <script src="js/drawbuffer.js"></script>
 <script src="js/base64array.js"></script>
 
-<polymer-element name="audio-player" attributes="src autoplay width height">
+<polymer-element name="audio-player" attributes="src width height">
   <template>
     <style>
       :host {
@@ -20,9 +20,6 @@
         this.audioContext = new AudioContext();
         this.audioSource = this.audioContext.createBufferSource();
         this.audioSource.connect(this.audioContext.destination);
-        if (this.src) {
-          this.loadAudioSrc();
-        }
       },
       srcChanged: function(oldVal, newVal) {
         this.loadAudioSrc();
