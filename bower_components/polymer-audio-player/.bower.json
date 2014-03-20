@@ -1,0 +1,21 @@
+{
+  "name": "polymer-audio-player",
+  "main": "audio-player.html",
+  "ignore": [
+    ".gitignore"
+  ],
+  "dependencies": {
+    "polymer": "~0.2.1"
+  },
+  "homepage": "https://github.com/proppy/polymer-audio-player",
+  "_release": "e688dcabeb",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "e688dcabeb81cf9a1378568c98756a5ed77c596f"
+  },
+  "_source": "git://github.com/proppy/polymer-audio-player.git",
+  "_target": "*",
+  "_originalSource": "proppy/polymer-audio-player",
+  "_direct": true
+}
