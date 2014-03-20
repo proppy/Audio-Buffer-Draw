@@ -38,7 +38,7 @@
       height: 50,
       color: 'grey',
       ready: function() {
-        AudioContext = AudioContext || webkitAudioContext;
+        AudioContext = window.AudioContext || webkitAudioContext;
         this.audioContext = window.audioContext = window.audioContext || new AudioContext();
         this.canvas = this.$['sound-buffer-view'];
       },
