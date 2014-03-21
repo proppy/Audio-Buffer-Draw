@@ -2,7 +2,7 @@
 <script src="js/drawbuffer.js"></script>
 <script src="js/base64array.js"></script>
 
-<polymer-element name="webaudio-buffer-draw" attributes="src width height">
+<polymer-element name="webaudio-buffer-draw" attributes="src width height color">
   <template>
     <style>
       :host {
@@ -79,7 +79,9 @@
         this.audioSource.stop(0);
       },
       drawBuffer: function(buffer) {
-        drawBuffer(this.canvas.width, this.canvas.height, this.canvas.getContext('2d'), buffer);
+        var ctx = this.canvas.getContext('2d');
+        ctx.fillStyle = this.color;
+        drawBuffer(this.canvas.width, this.canvas.height, ctx, buffer);
       }
     });
   </script>
