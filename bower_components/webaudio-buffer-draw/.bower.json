@@ -8,11 +8,11 @@
     "polymer": "~0.2.1"
   },
   "homepage": "https://github.com/proppy/webaudio-buffer-draw",
-  "_release": "08f4eceb1e",
+  "_release": "e3c61d4f88",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "08f4eceb1e4e59dcbdf2cefbfbe6134d08a02d90"
+    "commit": "e3c61d4f88c29b6975d3649044ed2b9f59735dd7"
   },
   "_source": "git://github.com/proppy/webaudio-buffer-draw.git",
   "_target": "*",
